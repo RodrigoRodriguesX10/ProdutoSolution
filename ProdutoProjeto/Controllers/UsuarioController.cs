@@ -27,7 +27,8 @@ namespace ProdutoProjeto.Controllers
         // GET: Usuario/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var usuario = Usuarios.First(u => u.Id == id);
+            return View(usuario);
         }
 
         // GET: Usuario/Create
@@ -39,12 +40,12 @@ namespace ProdutoProjeto.Controllers
         // POST: Usuario/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Usuario usuario)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                Usuarios.Add(usuario);
                 return RedirectToAction(nameof(Index));
             }
             catch

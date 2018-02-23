@@ -27,7 +27,8 @@ namespace ProdutoProjeto.Controllers
         // GET: Produto/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var produto = Produtos.First(p => p.Id == id);
+            return View(produto);
         }
 
         // GET: Produto/Create
@@ -39,12 +40,11 @@ namespace ProdutoProjeto.Controllers
         // POST: Produto/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Produto model)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                Produtos.Add(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -56,18 +56,20 @@ namespace ProdutoProjeto.Controllers
         // GET: Produto/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var produto = Produtos.First(p => p.Id == id);
+            return View(produto);
         }
 
         // POST: Produto/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Produto produto)
         {
             try
             {
-                // TODO: Add update logic here
-
+                var model = Produtos.First(p => p.Id == produto.Id);
+                var index = Produtos.IndexOf(model);
+                Produtos[index] = produto;
                 return RedirectToAction(nameof(Index));
             }
             catch
