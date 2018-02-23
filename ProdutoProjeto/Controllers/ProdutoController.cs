@@ -25,7 +25,7 @@ namespace ProdutoProjeto.Controllers
         }
 
         // GET: Produto/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int id) 
         {
             var produto = Produtos.First(p => p.Id == id);
             return View(produto);
