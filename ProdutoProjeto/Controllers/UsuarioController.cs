@@ -57,18 +57,21 @@ namespace ProdutoProjeto.Controllers
         // GET: Usuario/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = Usuarios.First(u => u.Id == id);
+            return View(model);
         }
 
         // POST: Usuario/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit( Usuario usuario )
         {
             try
             {
                 // TODO: Add update logic here
-
+                var model = Usuarios.First(u => u.Id == usuario.Id);
+                var index = Usuarios.IndexOf(model);
+                Usuarios[index] = usuario;
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -80,18 +83,20 @@ namespace ProdutoProjeto.Controllers
         // GET: Usuario/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = Usuarios.First(u => u.Id == id);
+            return View(model);
         }
 
         // POST: Usuario/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Usuario usuario)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                var model = Usuarios.First(u => u.Id == usuario.Id);
+                Usuarios.Remove(model);
                 return RedirectToAction(nameof(Index));
             }
             catch

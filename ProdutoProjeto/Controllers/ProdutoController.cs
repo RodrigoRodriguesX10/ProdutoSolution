@@ -81,18 +81,19 @@ namespace ProdutoProjeto.Controllers
         // GET: Produto/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = Produtos.First(p => p.Id == id);
+            return View(model);
         }
 
         // POST: Produto/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Produto produto)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                var model = Produtos.First(p => p.Id == produto.Id);
+                Produtos.Remove(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
