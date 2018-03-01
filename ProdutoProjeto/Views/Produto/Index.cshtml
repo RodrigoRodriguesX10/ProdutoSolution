@@ -39,7 +39,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Categoria)
             </td>
-            <td>
+            <td class="@(item.Preco < 10 ? "btn-danger" : "")">
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
